@@ -14,43 +14,7 @@
 <body>
 
 <style>
-.menu-ui {
-  background:#fff;
-  position:absolute;
-  top:10px;right:10px;
-  z-index:1;
-  border-radius:3px;
-  width:120px;
-  border:1px solid rgba(0,0,0,0.4);
-  }
-  .menu-ui a {
-    font-size:13px;
-    color:#404040;
-    display:block;
-    margin:0;padding:0;
-    padding:10px;
-    text-decoration:none;
-    border-bottom:1px solid rgba(0,0,0,0.25);
-    text-align:center;
-    }
-    .menu-ui a:first-child {
-      border-radius:3px 3px 0 0;
-      }
-    .menu-ui a:last-child {
-      border:none;
-      border-radius:0 0 3px 3px;
-      }
-    .menu-ui a:hover {
-      background:#f8f8f8;
-      color:#404040;
-      }
-    .menu-ui a.active {
-      background:#3887BE;
-      color:#FFF;
-      }
-      .menu-ui a.active:hover {
-        background:#3074a4;
-        }
+
 </style>
 <div id='map'>
 	<nav id='map-ui' class='menu-ui'>
@@ -59,21 +23,18 @@
 </div>
 <script>
 L.mapbox.accessToken = 'pk.eyJ1Ijoic2hlZmZpZWxkaGFsZSIsImEiOiJvWU4xOFMwIn0.rU9vYzMsruo3JSJPQ92LaQ';
-L.tilelayer(https://api.mapbox.com/styles/v1/sheffieldhale/cj0wz8rxs00d92rnyfi5l0v8u/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic2hlZmZpZWxkaGFsZSIsImEiOiJvWU4xOFMwIn0.rU9vYzMsruo3JSJPQ92LaQ).setView([0, 0], 4);
+var map = L.mapbox.map('map','mapbox://styles/sheffieldhale/cj267xz1c004d2rpe0svtosah').setView([20, 99], 5);
+
 // This light pollution layer is NOT open-source and requires permission in order to use!
 var lightpollution = L.tileLayer.wms('http://www.lightpollutionmap.info/geoserver/gwc/service/wms', {
       format: 'image/png',
       transparent: true,
-      opacity: .25,
+      opacity: 1,
       layers: 'PostGIS:VIIRS_2015',
 }).addTo(map);
-//Layer switcher
-document.getElementById('lightpollution').onclick = function () {
- var enable = this.className !== 'active';
-  lightpollution.setOpacity(enable ? .25 : 0);
-   this.className = enable ? 'active' : '';
-    return false;
-};
+
+
+
 </script>
 
 </body>
